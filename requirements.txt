@@ -1,0 +1,14 @@
+Django>=5.1,<5.3
+djangorestframework>=3.15,<3.17
+django-cors-headers>=4.6,<5
+djangorestframework-simplejwt[crypto]>=5.3,<6
+drf-spectacular>=0.28,<1
+django-filter>=24.3,<26
+psycopg[binary]>=3.2,<4
+redis>=5.2,<6
+celery>=5.4,<6
+django-redis>=5.4,<6
+Pillow>=11.0,<12
+gunicorn>=23,<24
+python-dotenv>=1.0,<2
+
