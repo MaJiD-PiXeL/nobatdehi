@@ -4,7 +4,10 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR.parent / ".env")
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-development-key-change-me")
 DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() == "true"
@@ -57,17 +60,25 @@ TEMPLATES = [{
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "nobat"),
-        "USER": os.getenv("POSTGRES_USER", "nobat"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "nobat"),
-        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
-        "PORT": os.getenv("POSTGRES_PORT", "5432"),
-        "CONN_MAX_AGE": 60,
+if os.getenv("DJANGO_DB_ENGINE", "postgresql").lower() == "sqlite":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.getenv("SQLITE_DB_PATH", str(BASE_DIR / "db.sqlite3")),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("POSTGRES_DB", "nobat"),
+            "USER": os.getenv("POSTGRES_USER", "nobat"),
+            "PASSWORD": os.getenv("POSTGRES_PASSWORD", "nobat"),
+            "HOST": os.getenv("POSTGRES_HOST", "localhost"),
+            "PORT": os.getenv("POSTGRES_PORT", "5432"),
+            "CONN_MAX_AGE": 60,
+        }
+    }
 
 AUTH_USER_MODEL = "accounts.User"
 AUTHENTICATION_BACKENDS = ("accounts.authentication.EmailOrPhoneBackend",)

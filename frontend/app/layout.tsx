@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "نوبت | رزرو آنلاین",
-  description: "سامانه حرفه‌ای رزرو و نوبت‌دهی آنلاین",
+  description: "جست‌وجو و رزرو آنلاین برای کسب‌وکارهای خدماتی",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -13,4 +13,3 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
-

@@ -30,7 +30,13 @@ class Business(UUIDTimeStampedModel):
 
     def save(self, *args, **kwargs):  # type: ignore[no-untyped-def]
         if not self.slug:
-            self.slug = slugify(self.name, allow_unicode=True)
+            base_slug = slugify(self.name, allow_unicode=True) or "business"
+            candidate = base_slug
+            suffix = 2
+            while type(self).objects.exclude(pk=self.pk).filter(slug=candidate).exists():
+                candidate = f"{base_slug}-{suffix}"
+                suffix += 1
+            self.slug = candidate
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -90,4 +96,3 @@ class BranchWorkHour(UUIDTimeStampedModel):
             from django.core.exceptions import ValidationError
 
             raise ValidationError("End time must be later than start time.")
-

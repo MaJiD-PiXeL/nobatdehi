@@ -11,4 +11,5 @@ node_modules/
 .next/
 postgres_data/
 redis_data/
-
+backend/db.sqlite3
+*.tsbuildinfo

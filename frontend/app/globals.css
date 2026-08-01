@@ -2,6 +2,368 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light dark; }
-body { @apply min-h-screen bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100; }
+:root {
+  color-scheme: light;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(204, 251, 241, .72), transparent 27rem),
+    radial-gradient(circle at 92% 22%, rgba(224, 231, 255, .72), transparent 31rem),
+    #f7f8fc;
+  color: #14213d;
+  font-family: Vazirmatn, IRANSans, "Segoe UI", Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+
+button:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+::selection {
+  background: #99f6e4;
+  color: #134e4a;
+}
+
+/* App shell */
+main > header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid rgba(226, 232, 240, .75) !important;
+  background: rgba(255, 255, 255, .78) !important;
+  backdrop-filter: blur(18px);
+}
+
+main > header > div {
+  max-width: 76rem !important;
+  padding-top: .9rem !important;
+  padding-bottom: .9rem !important;
+}
+
+main > header button:first-child {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  color: #172554 !important;
+  letter-spacing: -.06em;
+}
+
+main > header button:first-child::before {
+  display: grid;
+  width: 2.45rem;
+  height: 2.45rem;
+  place-items: center;
+  border-radius: .9rem;
+  background: linear-gradient(135deg, #14b8a6, #2563eb);
+  box-shadow: 0 10px 22px rgba(20, 184, 166, .25);
+  color: white;
+  content: "ن";
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+main > header button:last-child {
+  border-radius: 999px !important;
+  background: #172554 !important;
+  padding: .7rem 1.15rem !important;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .16);
+}
+
+main > header button:last-child:hover {
+  background: #0f766e !important;
+  box-shadow: 0 12px 24px rgba(13, 148, 136, .22);
+  transform: translateY(-1px);
+}
+
+/* Hero */
+main > section:first-of-type {
+  position: relative;
+  overflow: hidden;
+  min-height: 38rem;
+  padding-top: 7.5rem !important;
+  padding-bottom: 7.5rem !important;
+  background:
+    radial-gradient(circle at 83% 17%, rgba(94, 234, 212, .38), transparent 19rem),
+    radial-gradient(circle at 14% 90%, rgba(96, 165, 250, .45), transparent 25rem),
+    linear-gradient(127deg, #0f172a 0%, #172554 42%, #0f766e 100%) !important;
+}
+
+main > section:first-of-type::before {
+  position: absolute;
+  inset: 0;
+  opacity: .35;
+  background-image: linear-gradient(rgba(255, 255, 255, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  content: "";
+  mask-image: linear-gradient(to left, black, transparent 65%);
+}
+
+main > section:first-of-type::after {
+  position: absolute;
+  top: 50%;
+  left: max(4rem, calc(50% + 12rem));
+  display: flex;
+  width: 13.5rem;
+  min-height: 10rem;
+  align-items: end;
+  justify-content: center;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(circle at 22% 22%, #99f6e4 0 1.6rem, transparent 1.7rem),
+    linear-gradient(145deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, .08));
+  box-shadow: 0 28px 55px rgba(2, 6, 23, .34);
+  color: white;
+  content: "زمان دلخواهت را انتخاب کن";
+  font-size: .86rem;
+  font-weight: 800;
+  line-height: 1.9;
+  text-align: center;
+  transform: translateY(-44%) rotate(-7deg);
+  backdrop-filter: blur(12px);
+}
+
+main > section:first-of-type > div {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem !important;
+  padding-left: 23rem;
+  text-align: right !important;
+}
+
+main > section:first-of-type p:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 1.25rem !important;
+  border: 1px solid rgba(153, 246, 228, .28);
+  border-radius: 999px;
+  background: rgba(13, 148, 136, .22);
+  padding: .45rem .8rem;
+  color: #ccfbf1 !important;
+}
+
+main > section:first-of-type p:first-child::before {
+  width: .45rem;
+  height: .45rem;
+  border-radius: 999px;
+  background: #5eead4;
+  box-shadow: 0 0 0 5px rgba(94, 234, 212, .14);
+  content: "";
+}
+
+main > section:first-of-type h1 {
+  max-width: 45rem;
+  font-size: clamp(2.7rem, 5vw, 4.9rem) !important;
+  letter-spacing: -.055em;
+  line-height: 1.18 !important;
+  text-wrap: balance;
+}
+
+main > section:first-of-type h1 + p {
+  margin-right: 0 !important;
+  max-width: 38rem !important;
+  color: #dbeafe !important;
+  font-size: 1.06rem;
+}
+
+main > section:first-of-type form {
+  margin-right: 0 !important;
+  max-width: 43rem !important;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 1.25rem !important;
+  padding: .45rem !important;
+  box-shadow: 0 22px 45px rgba(2, 6, 23, .26);
+}
+
+main > section:first-of-type form input {
+  min-height: 3.3rem;
+  border-radius: .95rem !important;
+  background: #fff !important;
+  padding-right: 1.15rem !important;
+}
+
+main > section:first-of-type form button {
+  min-height: 3.3rem;
+  border-radius: .95rem !important;
+  background: linear-gradient(135deg, #0f766e, #0d9488) !important;
+  padding-right: 1.6rem !important;
+  padding-left: 1.6rem !important;
+  box-shadow: 0 10px 20px rgba(13, 148, 136, .24);
+}
+
+main > section:first-of-type form button:hover {
+  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+  transform: translateY(-1px);
+}
+
+/* Results */
+main > section:nth-of-type(2) {
+  max-width: 76rem !important;
+  padding-top: 5.5rem !important;
+  padding-bottom: 5.5rem !important;
+}
+
+main > section:nth-of-type(2) > div:first-child {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+main > section:nth-of-type(2) > div:first-child::after {
+  content: "پیدا کردن وقت مناسب، بدون تماس تلفنی";
+  color: #64748b;
+  font-size: .85rem;
+}
+
+main > section:nth-of-type(2) h2 {
+  margin-top: .35rem;
+  color: #172554;
+  font-size: 2rem !important;
+  letter-spacing: -.04em;
+}
+
+main > section:nth-of-type(2) > p.rounded-2xl {
+  border: 0 !important;
+  border-radius: 1.5rem !important;
+  background: linear-gradient(135deg, #fff, #f0fdfa) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, .07);
+}
+
+main > section:nth-of-type(2) article {
+  border: 1px solid #e6eaf1 !important;
+  border-radius: 1.45rem !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .055) !important;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+main > section:nth-of-type(2) article:hover {
+  border-color: #99f6e4 !important;
+  box-shadow: 0 22px 38px rgba(15, 23, 42, .1) !important;
+  transform: translateY(-5px);
+}
+
+main > section:nth-of-type(2) article > div:first-child > div:first-child {
+  border-radius: 1rem !important;
+  background: linear-gradient(135deg, #ccfbf1, #dbeafe) !important;
+  color: #0f766e !important;
+}
+
+main > section:nth-of-type(2) article button {
+  border-radius: .9rem !important;
+  background: #172554 !important;
+}
+
+main > section:nth-of-type(2) article button:hover {
+  background: #0f766e !important;
+}
+
+/* Booking area and dialogs */
+main > section#booking {
+  background: linear-gradient(180deg, rgba(236, 253, 245, .8), rgba(239, 246, 255, .8)) !important;
+}
+
+main > section#booking h2 {
+  color: #172554;
+  letter-spacing: -.04em;
+}
+
+main > section#booking form {
+  border: 1px solid rgba(226, 232, 240, .8);
+  box-shadow: 0 22px 52px rgba(15, 23, 42, .09) !important;
+}
+
+main > section#booking form > div:last-child {
+  border: 1px solid #e0f2fe;
+  background: linear-gradient(160deg, #f8fafc, #ecfeff) !important;
+}
+
+main > section.border-t.border-slate-200.bg-slate-100 {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  overflow-y: auto;
+  display: grid;
+  place-items: start center;
+  background: rgba(15, 23, 42, .62) !important;
+  padding: 4rem 1rem !important;
+  backdrop-filter: blur(8px);
+}
+
+main > section.border-t.border-slate-200.bg-slate-100 > div {
+  width: min(100%, 48rem);
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 1.75rem !important;
+  box-shadow: 0 30px 80px rgba(2, 6, 23, .35) !important;
+}
+
+@media (max-width: 900px) {
+  main > section:first-of-type {
+    min-height: auto;
+    padding-top: 5.5rem !important;
+    padding-bottom: 5.5rem !important;
+  }
+
+  main > section:first-of-type > div {
+    padding-left: 0;
+    text-align: center !important;
+  }
+
+  main > section:first-of-type h1 + p,
+  main > section:first-of-type form {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  main > section:first-of-type::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  main > header > div {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+
+  main > header button:first-child {
+    font-size: 1.25rem !important;
+  }
+
+  main > section:first-of-type h1 {
+    font-size: 2.55rem !important;
+  }
+
+  main > section:nth-of-type(2) > div:first-child {
+    display: block;
+  }
+
+  main > section:nth-of-type(2) > div:first-child::after {
+    display: block;
+    margin-top: .5rem;
+  }
+}
