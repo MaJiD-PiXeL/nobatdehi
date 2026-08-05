@@ -25,7 +25,7 @@ class BusinessViewSet(viewsets.ModelViewSet):
     def get_queryset(self):  # type: ignore[no-untyped-def]
         # Public discovery must work even when the browser has an unrelated JWT.
         if self.action in {"list", "retrieve", "booking_catalog"}:
-            queryset = Business.objects.filter(is_active=True).prefetch_related("employees")
+            queryset = Business.objects.filter(is_active=True).prefetch_related("employees", "services")
             query = self.request.query_params.get("q", "").strip()
             if query:
                 provider_query = Q()
@@ -38,6 +38,7 @@ class BusinessViewSet(viewsets.ModelViewSet):
                 queryset = queryset.filter(
                     Q(name__icontains=query)
                     | Q(description__icontains=query)
+                    | Q(services__name__icontains=query)
                     | provider_query
                 ).distinct()
             return queryset

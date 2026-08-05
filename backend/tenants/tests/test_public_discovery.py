@@ -25,6 +25,13 @@ class PublicDiscoveryTests(TestCase):
         self.assertEqual(response.data[0]["slug"], self.business.slug)
         self.assertEqual(response.data[0]["providers"][0]["name"], "نیلوفر احمدی")
 
+    def test_public_search_matches_service_and_includes_service_summary(self) -> None:
+        response = self.client.get("/api/v1/businesses/?q=مشاوره")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data[0]["slug"], self.business.slug)
+        self.assertEqual(response.data[0]["services"][0]["name"], "مشاوره")
+
     def test_onboarding_creates_a_bookable_business(self) -> None:
         client = APIClient()
         client.force_authenticate(self.owner)

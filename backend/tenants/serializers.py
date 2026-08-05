@@ -31,15 +31,26 @@ class BusinessSerializer(serializers.ModelSerializer):
 
 class PublicBusinessSerializer(serializers.ModelSerializer):
     providers = serializers.SerializerMethodField()
+    services = serializers.SerializerMethodField()
 
     class Meta:
         model = Business
-        fields = ("id", "name", "slug", "description", "logo", "phone", "address", "timezone", "providers")
+        fields = ("id", "name", "slug", "description", "logo", "phone", "address", "timezone", "providers", "services")
 
     def get_providers(self, business: Business) -> list[dict[str, str]]:
         return [
             {"name": employee.full_name, "specialty": employee.specialty}
             for employee in business.employees.filter(is_active=True).only("first_name", "last_name", "specialty")[:4]
+        ]
+
+    def get_services(self, business: Business) -> list[dict[str, str | int]]:
+        return [
+            {
+                "name": service.name,
+                "price": str(service.price),
+                "duration_minutes": service.duration_minutes,
+            }
+            for service in business.services.filter(is_active=True).only("name", "price", "duration_minutes")[:3]
         ]
 
 

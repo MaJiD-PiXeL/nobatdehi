@@ -101,7 +101,7 @@ main > header button:last-child:hover {
 main > section:first-of-type {
   position: relative;
   overflow: hidden;
-  min-height: 38rem;
+  min-height: 35rem;
   padding-top: 7.5rem !important;
   padding-bottom: 7.5rem !important;
   background:
@@ -122,8 +122,8 @@ main > section:first-of-type::before {
 
 main > section:first-of-type::after {
   position: absolute;
-  top: 50%;
-  left: max(4rem, calc(50% + 12rem));
+  top: 53%;
+  left: max(2rem, calc((100% - 72rem) / 2));
   display: flex;
   width: 13.5rem;
   min-height: 10rem;
@@ -142,7 +142,7 @@ main > section:first-of-type::after {
   font-weight: 800;
   line-height: 1.9;
   text-align: center;
-  transform: translateY(-44%) rotate(-7deg);
+  transform: translateY(-44%) rotate(-5deg);
   backdrop-filter: blur(12px);
 }
 
@@ -150,7 +150,7 @@ main > section:first-of-type > div {
   position: relative;
   z-index: 1;
   max-width: 72rem !important;
-  padding-left: 23rem;
+  padding-left: 17rem;
   text-align: right !important;
 }
 
@@ -176,10 +176,10 @@ main > section:first-of-type p:first-child::before {
 }
 
 main > section:first-of-type h1 {
-  max-width: 45rem;
-  font-size: clamp(2.7rem, 5vw, 4.9rem) !important;
+  max-width: 42rem;
+  font-size: clamp(2.45rem, 4.3vw, 4.25rem) !important;
   letter-spacing: -.055em;
-  line-height: 1.18 !important;
+  line-height: 1.25 !important;
   text-wrap: balance;
 }
 
